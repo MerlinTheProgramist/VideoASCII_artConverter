@@ -9,7 +9,7 @@ you put your video file in to input folder and script outputs in in output folde
   
 Note
 You must to have installed libs: 
--Pillow
--OpenCV
--numpy
+* Pillow
+* OpenCV
+* numpy
 
