@@ -3,7 +3,7 @@
 ## Generea info
 Simple python script for converting video file to ASCII art video file!
 
-https://user-images.githubusercontent.com/69404231/112722866-159e2f80-8f0c-11eb-990f-9e0e252daee0.mp4
+[video](https://user-images.githubusercontent.com/69404231/112722866-159e2f80-8f0c-11eb-990f-9e0e252daee0.mp4)
 
 It works like that: 
 You run a the py script with following arguments:
