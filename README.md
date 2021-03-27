@@ -3,6 +3,8 @@
 ## Generea info
 Simple python script for converting video file to ASCII art video file!
 
+![inputVideo](./input/a.avi)
+
 It works like that: 
 You run a the py script with following arguments:
   py ASCI_video_converter.py video.avi
