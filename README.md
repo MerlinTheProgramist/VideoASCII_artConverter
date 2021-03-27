@@ -1,4 +1,8 @@
 # VideoASCII_artConverter
+
+## Generea info
+Simple python script for converting video file to ASCII art video file!
+
 It works like that: 
 You run a the py script with following arguments:
   py ASCI_video_converter.py video.avi
@@ -9,7 +13,7 @@ you put your video file in to input folder and script outputs in in output folde
   
 ## Note
 You must to have installed libs: 
-* Pillow
-* OpenCV
-* numpy
+* Pillow (pip install Pillow)
+* OpenCV (pip install opencv-python)
+* numpy  (pip install numpy)
 
