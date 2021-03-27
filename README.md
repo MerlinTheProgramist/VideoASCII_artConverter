@@ -9,4 +9,4 @@ You must to have installed libs:
 -Pillow
 -OpenCV
 -numpy
--d3dshot
+
