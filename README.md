@@ -3,14 +3,13 @@
 ## General info
 Simple python script for converting video file to ASCII art video file!
 
-![sampleInput](https://user-images.githubusercontent.com/69404231/112722866-159e2f80-8f0c-11eb-990f-9e0e252daee0.mp4)
-![sampleUotput](https://user-images.githubusercontent.com/69404231/112723125-56e30f00-8f0d-11eb-9039-0453582832b9.mp4)
-It works like tha
+##Works like that, tnat took around 3 sec for every frame
+![sampleInput](https://user-images.githubusercontent.com/69404231/112722866-159e2f80-8f0c-11eb-990f-9e0e252daee0.mp4)<br/>
+![sampleUotput](https://user-images.githubusercontent.com/69404231/112723125-56e30f00-8f0d-11eb-9039-0453582832b9.mp4)<br/>
 
-
-t: 
+## How to use
 You run a the py script with following arguments:
-  py ASCI_video_converter.py video.avi
+  > py ASCI_video_converter.py video.avi
 you put your video file in to input folder and script outputs in in output folder with the same name
   
  I recoomned using AVI video file, but sometimes it works with mp4 too
