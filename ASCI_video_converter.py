@@ -3,94 +3,84 @@ import time
 from PIL import Image, ImageDraw, ImageFont, ImageSequence
 import sys
 import os
-import PIL.Image
-from os import system
 import cv2
 import numpy as np
 
 
-ASCII_CHARS=["@","#","S","%","?","*","+",";",":",",","."]
+ASCII_CHARS = ["@","#","S","%","?","*","+",";",":",",","."]
 
-
-
-
-
-def resize_image(image,new_width=200):
+def conversion (image,new_width=200):
     width, height=image.size
-    ratio=height/width
-    new_height=int(new_width*ratio)
+    ratio = height/width
+    new_height = int(new_width*ratio)
     resized_image=image.resize((new_width,new_height))
 
+    gray = resized_image.convert("L")
 
-    return(resized_image,new_height,new_width)
+    pixels = gray.getdata()
+    new_image_data = "".join([ASCII_CHARS[pixel//25] for pixel in pixels])
 
-def grayify(image):
-    grayscale_image=image.convert("L")
-    return(grayscale_image)
-
-def pixels_to_ascii(image):
-    pixels=image.getdata()
-    characters="".join([ASCII_CHARS[pixel//25] for pixel in pixels])
-    return(characters)
+    return (new_image_data,new_height,new_width)
 
 def textToImage(text,height,width):
     img = Image.new('RGB', (width*11,height*13), color = 'white')
     draw = ImageDraw.Draw(img)
-    draw.text((0, 0),text,(0,0,0),font=font,spacing=-4)
+    draw.text((0, 0),text,(0,0,0),font = font,spacing = -4)
     return (img)
 
 
 def main(frame,new_width=200):
 
     image = Image.fromarray(frame)
-    last_time=time.time()
-    resized,height,width=resize_image(image)
-    new_image_data=pixels_to_ascii(grayify(resized))
-    print('ToAsci: {}'.format(time.time()-last_time))
+    last_time = time.time()
+    new_image_data,height,width = conversion(image)
+    print('ToAsci: {}'.format(time.time() - last_time))
 
-    last_time=time.time()
-    pixel_count=len(new_image_data)
-    ascii_image="\n".join(new_image_data[i:(i+new_width)] for i in range(0,pixel_count, new_width))
+    last_time = time.time()
+    pixel_count = len(new_image_data)
+    ascii_image = "\n".join(new_image_data[i:(i+new_width)] for i in range(0,pixel_count, new_width))
     print('Entering: {}'.format(time.time()-last_time))
 
-    last_time=time.time()
+    last_time = time.time()
 
-    imageWithText=textToImage(ascii_image,height,width)
+    imageWithText = textToImage(ascii_image,height,width)
     print('To Image with text: {}'.format(time.time()-last_time))
 
-    cv2.imshow('textIMG', np.array(imageWithText))
-    return imageWithText
+    return (imageWithText)
 
-
-#start
-#if len(sys.argv) ==5:
-    #font = ImageFont.truetype("andalemo.ttf", int(sys.argv[2]))
 
 font = ImageFont.truetype("andalemo.ttf", 18)
+viewPort=False
 
-
-fn ='./input/'+sys.argv[1]
+fn = './input/'+sys.argv[1]
 if(os.path.exists(fn)):
-    #SaveName=sys.arvg[]#-------------------------------------------------------------------------
+    if(len(sys.argv) == 3 and sys.argv[2]=='-v'):
+        viewPort=True
 
-    videoB=cv2.VideoCapture(fn)
-    fps=videoB.get(cv2.CAP_PROP_FPS)
+    videoB = cv2.VideoCapture(fn)
+    fps = videoB.get(cv2.CAP_PROP_FPS)
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
 
     success, frame = videoB.read()
 
-    img=main(frame)
+    img = main(frame)
     height, width = img.size
-    ASCIIFrame=np.array(img)
+    ASCIIFrame = np.array(img)
 
-    videoA=cv2.VideoWriter('./output/'+sys.argv[1],fourcc,fps,(img.size))
+    count = 1
+    videoA = cv2.VideoWriter('./output/'+sys.argv[1],fourcc,fps,(img.size))
     videoA.write(ASCIIFrame)
-    count=1
+    print('frame ',count)
+    if(viewPort):
+        cv2.imshow('textIMG', np.array(ASCIIFrame))
     while success:
         #cv2.imshow('terdown',frame)
-        videoA.write(np.array(main(frame)))
+        ASCIIFrame = np.array(main(frame))
+        videoA.write(ASCIIFrame)
+        if(viewPort):
+            cv2.imshow('textIMG', np.array(ASCIIFrame))
+        count += 1
         print('frame ',count)
-        count+=1
         success, frame = videoB.read()
 
         if cv2.waitKey(1) == ord('q'):
