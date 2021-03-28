@@ -74,7 +74,6 @@ if(os.path.exists(fn)):
     if(viewPort):
         cv2.imshow('ASCII Live', np.array(ASCIIFrame))
     while success:
-        #cv2.imshow('terdown',frame)
         ASCIIFrame = np.array(main(frame))
         videoA.write(ASCIIFrame)
         if(viewPort):
@@ -91,4 +90,4 @@ if(os.path.exists(fn)):
 else:
     print('file directory does not exist')
 
-#py ASCI_video_converter.py ./images/v.mp4
+#py ASCI_video_converter.py b.avi -v
