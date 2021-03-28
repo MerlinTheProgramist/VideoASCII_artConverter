@@ -10,9 +10,10 @@ this took around 3 sec for every frame <br/>
 
 ## How to use 
 You run a the py script with following arguments: <br/>
-  > py ASCI_video_converter.py video.avi 
+  > py ASCI_video_converter.py video.avi -v
 
 you put your video file in to input folder and script outputs in in output folder with the same name <br/>
+If you wish to watch your frames converting live, add -v on the end
   
  I recoomned using AVI video file, but sometimes it works with mp4 too <br/>
  I will try to improove it over time and add new functionality, Im open on submission <br/>
