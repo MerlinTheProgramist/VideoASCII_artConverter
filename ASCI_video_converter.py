@@ -72,13 +72,13 @@ if(os.path.exists(fn)):
     videoA.write(ASCIIFrame)
     print('frame ',count)
     if(viewPort):
-        cv2.imshow('textIMG', np.array(ASCIIFrame))
+        cv2.imshow('ASCII Live', np.array(ASCIIFrame))
     while success:
         #cv2.imshow('terdown',frame)
         ASCIIFrame = np.array(main(frame))
         videoA.write(ASCIIFrame)
         if(viewPort):
-            cv2.imshow('textIMG', np.array(ASCIIFrame))
+            cv2.imshow('ASCII Live', np.array(ASCIIFrame))
         count += 1
         print('frame ',count)
         success, frame = videoB.read()
